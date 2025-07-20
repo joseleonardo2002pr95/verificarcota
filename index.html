@@ -270,5 +270,13 @@ fbq('track', 'PageView');
                 });
         });
     </script>
+    <script>
+  window.onload = function() {
+    gtag('event', 'PRESSEL', { 
+      'event_category': 'funnel_A', 
+      'page_path': '/prevpi' 
+    });
+  };
+</script>
 </body>
 </html>
