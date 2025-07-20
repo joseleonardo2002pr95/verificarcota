@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reativa Saldo - Consulta Rápida</title>
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '727014296718099');
+fbq('track', 'PageView');
+</script>
     <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
     <style>
         /* Design moderno e bonito, focado na consulta, com cores gov.br */
@@ -163,6 +175,9 @@
     </style>
 </head>
 <body>
+ <script>
+  fbq('trackCustom', 'PRESSEL', { content_name: 'PRESSEL PREVPI' });
+</script>
     <header>
         <h1>Reativa Saldo</h1>
         <p>Consulte seu saldo disponível de forma rápida e segura.</p>
